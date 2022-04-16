@@ -21,19 +21,19 @@ def getCapacityData():
         # print(ret.text)
         myRet = ret.json()
         print('#获取可用配送时间中')
-        time_list = myRet['data'].get('capcityResponseList')[0].get('list')
-        for i in range(0, len(time_list)):
-            # 获取到时间直接加入到全局时间数组
-            startRealTime = time_list[i].get('startRealTime')
-            endRealTime = time_list[i].get('endRealTime')
-            deliveryTimeArr = [startRealTime, endRealTime]
-            timeKey = startRealTime + endRealTime
-            deliveryTime[timeKey] = deliveryTimeArr
-
-            # if not time_list[i].get('timeISFull'):
-            #     print('配送时间 可用:')
-            # else:
-            #     print('配送时间 已满:')
+        list1 = myRet['data']['capcityResponseList']
+        for days in list1:
+            for time in days['list']:
+                # print(time['startTime'] + " , " + time['endTime'])
+                startRealTime = time['startRealTime']
+                endRealTime = time['endRealTime']
+                deliveryTimeArr = [startRealTime, endRealTime]
+                timeKey = startRealTime + endRealTime
+                deliveryTime[timeKey] = deliveryTimeArr
+                # if not time_list[i].get('timeISFull'):
+                #     print('配送时间 可用:')
+                # else:
+                #     print('配送时间 已满:')
     except Exception as e:
         print('getCapacityData [Error]: ' + str(e))
 
@@ -91,8 +91,8 @@ def runCreateData():
         if len(deliveryTime) > 0 and len(threadPool) < len(deliveryTime) * threadCount:
             for k, v in deliveryTime.items():
                 body_data = copy.deepcopy(global_data)
-                body_data['settleDeliveryInfo']['expectArrivalEndTime'] = v[1]
                 body_data['settleDeliveryInfo']['expectArrivalTime'] = v[0]
+                body_data['settleDeliveryInfo']['expectArrivalEndTime'] = v[1]
                 for i in range(1,threadCount + 1):
                     tOrder = threading.Thread(target=runOrder,args=(body_data, ))
                     tOrder.setName(k + ":" + str(i))
@@ -114,7 +114,7 @@ if __name__ == '__main__':
     deliveryTime = {}
 
     # 盲猜一个配送时间可以在这里修改,用于打提前量
-    # deliveryTime["418"]= ["1650243600000", "1650276000000"]
+    # deliveryTime["424"]= ["1650762000000", ""]
 
     # 查询配送信息的一周动态组装
     date_list = []
