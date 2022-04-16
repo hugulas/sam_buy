@@ -1,7 +1,10 @@
 # sam_buy
 山姆买菜
+
 version:1.5
+
 owner :@guyongzx
+
 ### 如果本工程对你有所帮助,记得点个star鼓励一下作者QAQ :)
 
 platform: ios15;
@@ -24,8 +27,8 @@ pip install --index-url https://pypi.douban.com/simple/ requests
 ##代码中有注释，遵循注释进行修改 运行即可
 
 # 关于配置
-请修改config.ini文件
-deviceid,authtoken,trackinfo三个字段为购物车的HTTP头部的字段信息
+
+deviceid,authtoken个字段为购物车的HTTP头部的字段信息
 
 依旧没有bark支持，需要的请自行添加
 
