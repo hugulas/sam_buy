@@ -1,6 +1,7 @@
 # sam_buy
 山姆买菜
-
+version:1.5
+owner :@guyongzx
 ### 如果本工程对你有所帮助,记得点个star鼓励一下作者QAQ :)
 
 platform: ios15;
@@ -10,7 +11,7 @@ app version: v5.0.45.1;
 python version: 3.8.6;
 
 ## 更新须知
-##引入configparser,requests 组件
+##引入requests 组件
 执行
 ```bash
 
@@ -19,7 +20,7 @@ pip install --index-url https://pypi.douban.com/simple/ requests
 
 ```
 
-## 有代码基础的使用v1分支,无基础使用v2
+## 有代码基础的使用v1 or v1.5分支,无基础使用v2
 ##代码中有注释，遵循注释进行修改 运行即可
 
 # 关于配置
