@@ -68,9 +68,6 @@ deviceid,authtoken个字段为购物车的HTTP头部的字段信息
 
 
 ## 倡导大家只够买必需品！不要浪费运力
-交流群
-
-<img src="https://github.com/azhan1998/sam_buy/blob/main/QRcode.jpg" width="375" height="375" alt="微信小程序"/><br/>
 
 
 # 仅供学习交流，不可用于非法牟利。
