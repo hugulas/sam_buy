@@ -45,8 +45,9 @@ def order(body_data):
     # print(body_data)
     try:
         ret = requests.post(url=myUrl, headers=global_headers, data=json.dumps(body_data))
-        print(ret.text)
+        # print(ret.text)
         myRet = ret.json()
+        print(myRet['msg'])
         status = myRet.get('success')
         if status:
             print('【成功】哥，咱家有菜了~')
@@ -114,7 +115,7 @@ if __name__ == '__main__':
     deliveryTime = {}
 
     # 盲猜一个配送时间可以在这里修改,用于打提前量
-    # deliveryTime["424"]= ["1650762000000", ""]
+    # deliveryTime["425"] = ["1650848400000", "1650880800000"]
 
     # 查询配送信息的一周动态组装
     date_list = []
