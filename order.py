@@ -1,3 +1,7 @@
+# -*- coding: UTF-8 -*-
+# __author__ = 'guyongzx'
+# __date__ = '2022-04-17'
+
 import json
 import requests
 from time import sleep
