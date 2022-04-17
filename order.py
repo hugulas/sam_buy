@@ -20,7 +20,7 @@ def getCapacityData():
         ret = requests.post(url=myUrl, headers=global_headers, data=json.dumps(data))
         # print(ret.text)
         myRet = ret.json()
-        print('#获取可用配送时间中')
+        # print('#获取可用配送时间中')
         list1 = myRet['data']['capcityResponseList']
         for days in list1:
             for time in days['list']:
@@ -81,7 +81,7 @@ def runGetCapacityData():
 def runOrder(body_data):
     while isGo:
         order(body_data)
-        sleep_time = random.randint(1, 2)
+        sleep_time = random.randint(0, 1)
         sleep(sleep_time)
 
 # 根据发货时间列表,创建下订单线程,1秒一次
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     # 线程结束标志位,抢购成功结束程序
     isGo = True
     # 单个时间段下单线程数
-    threadCount = 1
+    threadCount = 2
     # 下单线程池
     threadPool = []
     # 当前支持的配送时间段,用于多时段抢购

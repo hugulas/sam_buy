@@ -195,7 +195,7 @@ def getUserCart(addressList, storeList, uid):
     global goodlist
     global isGo
     # amount目测可以随便写一个
-    amount = "1"
+    amount = "93320"
     myUrl = 'https://api-sams.walmartmobile.cn/api/v1/sams/trade/cart/getUserCart'
     data = {
         "uid": uid, "deliveryType": deliveryType, "deviceType": "ios", "storeList": storeList, "parentDeliveryType": 1,
