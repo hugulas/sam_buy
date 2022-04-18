@@ -77,7 +77,7 @@ def runGetCapacityData():
             endtimeArray = time.localtime(int(v[1]) /1000)
             endStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", endtimeArray)
             print("当前获得的配送时间区域: " + str(startStyleTime) + " 至 " + str(endStyleTime))
-            sleep_time = random.randint(2, 4)
+            sleep_time = random.randint(2000, 4000) / 1000
             sleep(sleep_time)
 
 
@@ -85,7 +85,7 @@ def runGetCapacityData():
 def runOrder(body_data):
     while isGo:
         order(body_data)
-        sleep_time = random.randint(1, 2)
+        sleep_time = random.randint(1000, 2000) / 1000
         sleep(sleep_time)
 
 # 根据发货时间列表,创建下订单线程,1秒一次
