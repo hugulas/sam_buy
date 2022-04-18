@@ -85,7 +85,7 @@ def runGetCapacityData():
 def runOrder(body_data):
     while isGo:
         order(body_data)
-        sleep_time = random.randint(0, 1)
+        sleep_time = random.randint(1, 2)
         sleep(sleep_time)
 
 # 根据发货时间列表,创建下订单线程,1秒一次
