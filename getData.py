@@ -234,12 +234,14 @@ def getUserCart(addressList, storeList, uid):
                 storeId = normalGoodsList[i].get('storeId')
                 quantity = normalGoodsList[i].get('quantity')
                 goodsName = normalGoodsList[i].get('goodsName')
+                stockQuantity = normalGoodsList[i].get('stockQuantity')
                 goodlistitem = {
                     "spuId": spuId,
                     "storeId": storeId,
                     "isSelected": True,
                     "quantity": quantity,
-                    "goodsName": goodsName
+                    "goodsName": goodsName,
+                    "stockQuantity": stockQuantity
                 }
                 # print('目前有库存：' + 'squId' + str(spuId) + str(normalGoodsList[i].get('goodsName')) + '\t#数量：' + str(quantity) + '\t#金额：' + str(int(normalGoodsList[i].get('price')) / 100) + '元')
                 goodlist.append(goodlistitem)
@@ -260,6 +262,7 @@ def getUserCart(addressList, storeList, uid):
             print(json.dumps(goodlist, sort_keys=True, indent=4, separators=(',', ':'), ensure_ascii=False))
             for selectGood in goodlist:
                 del selectGood['goodsName']
+                del selectGood['stockQuantity']
 
             data = {"goodsList": goodlist,
                     "invoiceInfo": {},
