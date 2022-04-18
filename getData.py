@@ -56,7 +56,7 @@ def getAmount(goodlist):
         },
         "couponList": [],
         "isSelfPickup": 0,
-        "floorId": 0,
+        "floorId": 1,
     }
 
     try:
@@ -263,7 +263,7 @@ def getUserCart(addressList, storeList, uid):
 
             data = {"goodsList": goodlist,
                     "invoiceInfo": {},
-                    "cartDeliveryType": cartDeliveryType, "floorId": 0, "amount": amount, "purchaserName": "",
+                    "cartDeliveryType": cartDeliveryType, "floorId": 1, "amount": amount, "purchaserName": "",
                     "settleDeliveryInfo": {"expectArrivalTime": "startRealTime", "expectArrivalEndTime": "endRealTime",
                                            "deliveryType": deliveryType}, "tradeType": "APP", "purchaserId": "", "payType": 0,
                     "currency": "CNY", "channel": "wechat", "shortageId": 1, "isSelfPickup": 0, "orderType": 0,
