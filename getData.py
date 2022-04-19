@@ -10,10 +10,10 @@ import random
 # ## init config ###
 # 填写个人信息
 
-deviceid = 'x'
-authtoken = 'x'
-deliveryType = '2'  # 1：极速达 2：全城配送
-cartDeliveryType = 2  # 1：极速达 2：全城配送
+deviceid = ''
+authtoken = ''
+deliveryType = 1  # 1：极速达 2：全城配送
+cartDeliveryType = 1  # 1：极速达 2：全城配送
 
 
 # ## init config over ###
@@ -235,16 +235,18 @@ def getUserCart(addressList, storeList, uid):
                 quantity = normalGoodsList[i].get('quantity')
                 goodsName = normalGoodsList[i].get('goodsName')
                 stockQuantity = normalGoodsList[i].get('stockQuantity')
+                isSelected = normalGoodsList[i].get('isSelected')
                 goodlistitem = {
                     "spuId": spuId,
                     "storeId": storeId,
-                    "isSelected": True,
+                    "isSelected": isSelected,
                     "quantity": quantity,
                     "goodsName": goodsName,
                     "stockQuantity": stockQuantity
                 }
                 # print('目前有库存：' + 'squId' + str(spuId) + str(normalGoodsList[i].get('goodsName')) + '\t#数量：' + str(quantity) + '\t#金额：' + str(int(normalGoodsList[i].get('price')) / 100) + '元')
-                goodlist.append(goodlistitem)
+                if isSelected:
+                    goodlist.append(goodlistitem)
 
             # print(json.dumps(goodlist, sort_keys=True, indent=4, separators=(',', ':'), ensure_ascii=False))
             # print(json.dumps(goodlist, ensure_ascii=False))
