@@ -19,35 +19,32 @@ def getCapacityData():
         "perDateList": date_list,
         "storeDeliveryTemplateId": storeDeliveryTemplateId
     }
-    if guess:
-        return
-    else:
-        try:
-            ret = requests.post(url=myUrl, headers=global_headers, data=json.dumps(data))
-            # print(ret.text)
-            myRet = ret.json()
-            # print('#获取可用配送时间中')
-            list1 = myRet['data']['capcityResponseList']
-            capacityArr = []
-            for days in list1:
-                for time in days['list']:
-                    # print(time['startTime'] + " , " + time['endTime'])
-                    startRealTime = time['startRealTime']
-                    endRealTime = time['endRealTime']
-                    timeKey = startRealTime + endRealTime
-                    # 判断有时间段是否过多,多余预设阈值需删除最早的
-                    if len(capacityArr) > CapacityTimeMax:
-                        capacityArr.pop(0)
-                    else:
-                        capacityArr.append([timeKey, startRealTime, endRealTime])
-                    # if not time_list[i].get('timeISFull'):
-                    #     print('配送时间 可用:')
-                    # else:
-                    #     print('配送时间 已满:')
-            for doTime in capacityArr:
-                deliveryTime[doTime[0]] = [doTime[1], doTime[2]]
-        except Exception as e:
-            print('getCapacityData [Error]: ' + str(e))
+    try:
+        ret = requests.post(url=myUrl, headers=global_headers, data=json.dumps(data))
+        # print(ret.text)
+        myRet = ret.json()
+        # print('#获取可用配送时间中')
+        list1 = myRet['data']['capcityResponseList']
+        capacityArr = []
+        for days in list1:
+            for time in days['list']:
+                # print(time['startTime'] + " , " + time['endTime'])
+                startRealTime = time['startRealTime']
+                endRealTime = time['endRealTime']
+                timeKey = startRealTime + endRealTime
+                # 判断有时间段是否过多,多余预设阈值需删除最早的
+                if len(capacityArr) > CapacityTimeMax:
+                    capacityArr.pop(0)
+                else:
+                    capacityArr.append([timeKey, startRealTime, endRealTime])
+                # if not time_list[i].get('timeISFull'):
+                #     print('配送时间 可用:')
+                # else:
+                #     print('配送时间 已满:')
+        for doTime in capacityArr:
+            deliveryTime[doTime[0]] = [doTime[1], doTime[2]]
+    except Exception as e:
+        print('getCapacityData [Error]: ' + str(e))
 
 
 def order(body_data):
@@ -85,7 +82,8 @@ def notify():
 def runGetCapacityData():
     print('runGetCapacityData start')
     while isGo:
-        getCapacityData()
+        if not guess:
+            getCapacityData()
         for k, v in deliveryTime.items():
             #打印拿到的时间
             starttimeArray = time.localtime(int(v[0]) / 1000)
